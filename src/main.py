@@ -2,6 +2,7 @@ import re
 import httpx
 import asyncio
 import time
+import sys
 from typing import Union
 
 
@@ -26,6 +27,7 @@ value_list = [
     "https://esp8266.ru/forum/threads/ehnergopotreblenie-esp-novoe.2591/",
     "https://www.python-httpx.org/quickstart/",
     "jlad;asmdl;as.com",
+    "https://www.youtube.com/watch?v=3XV48iiEo1I&ab_channel=HolyYumi",
 ]
 
 
@@ -62,4 +64,11 @@ async def main(url_list: list, methods_list: list) -> dict:
 
 
 if __name__ == '__main__':
-    print(asyncio.run(main(value_list, url_methods)))
+    str_list = []
+
+    for line in sys.stdin:
+        if line == "\n":
+            break
+        str_list.append(line[:-1])
+
+    print(asyncio.run(main(str_list, url_methods)))
